@@ -1,5 +1,5 @@
 # Password File. See arduino_secrets.h.example for more info
-arduino_secrets.h
+ArduinoSecrets.h
 
 # Arduino IDE build files
 *.hex
