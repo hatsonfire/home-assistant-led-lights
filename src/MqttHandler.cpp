@@ -1,5 +1,5 @@
 #include <ArduinoJson.h>
-#include "MqttHandler.h"
+#include "MQTTHandler.h"
 
 long lastReconnectAttempt = 0;
 
@@ -12,7 +12,6 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 void setup_wifi() {
-  delay(10);
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(WIFI_SSID);

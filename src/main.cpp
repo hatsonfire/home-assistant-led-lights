@@ -1,10 +1,10 @@
 #include <ArduinoJson.h>
 
 #include "effects/Effect.h"
-#include "effects/PulsingEffect.h"
-#include "effects/SolidEffect.h"
-#include "LedStructure.h"
-#include "MqttHandler.h"
+#include "effects/Pulsing.h"
+#include "effects/Solid.h"
+#include "LEDStructure.h"
+#include "MQTTHandler.h"
 #include "Settings.h"
 // Include other effect headers here
 
