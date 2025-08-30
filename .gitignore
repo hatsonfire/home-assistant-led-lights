@@ -1,13 +1,8 @@
 # Password File. See arduino_secrets.h.example for more info
 ArduinoSecrets.h
 
-# Arduino IDE build files
-*.hex
-*.elf
-*.bin
-*.eep
+# VSCode+PlatformIO specific files
+.pio/
+.pdsagent/
+.VSCode/
 
-# Arduino IDE temporary files and cache
-.DS_Store
-.vscode/
-.idea/
