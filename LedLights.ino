@@ -1,11 +1,11 @@
 #include <ArduinoJson.h>
 
-#include "Effect.h"
+#include "effects/Effect.h"
+#include "effects/PulsingEffect.h"
+#include "effects/SolidEffect.h"
 #include "LedStructure.h"
 #include "MqttHandler.h"
-#include "PulsingEffect.h"
 #include "Settings.h"
-#include "SolidEffect.h"
 // Include other effect headers here
 
 // LED Definitions
