@@ -10,10 +10,10 @@
 #define MAX_BRIGHTNESS 255 // Default brightness (0-255)
 #define DATA_PIN_1 2 // GPIO pin connected to the LED strip's 1st data line
 #define DATA_PIN_2 5 // GPIO pin connected to the LED strip's 2nd data line
-#define LED_TYPE WS2812B
-#define COLOR_ORDER GRB
 #define NUM_LEDS_1 238 // Number of LEDs Attached to DATA_PIN_1 in your strip
 #define NUM_LEDS_2 322 // Number of LEDs Attached to DATA_PIN_2 in your strip
+#define LED_TYPE WS2812B
+#define COLOR_ORDER GRB
 #define NUM_NODES 25
 #define NUM_EDGES 40
 #define NUM_LEDS_PER_EDGE 14
@@ -28,9 +28,6 @@
 #define LIGHT_STATE_TOPIC "homeassistant/light/esp32_leds/state"
 
 // LED Data Struct
-extern CRGB leds_1[NUM_LEDS_1];
-extern CRGB leds_2[NUM_LEDS_2];
-
 struct Edge;
 struct Node {
   Edge *n, *ne, *se, *s, *sw, *nw;  

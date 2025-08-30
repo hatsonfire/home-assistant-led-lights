@@ -57,6 +57,11 @@ Edge 06: edge[6].leds[0] will be the LED closest to nodes[3]
 
 */
 
+CRGB leds_1[NUM_LEDS_1];
+CRGB leds_2[NUM_LEDS_2];
+
+Node nodes[NUM_NODES];
+Edge edges[NUM_EDGES];
 
 // Initialize the datastructure mapping LED physical addresses to Edges and Nodes.
 //
@@ -64,12 +69,10 @@ Edge 06: edge[6].leds[0] will be the LED closest to nodes[3]
 // Correct direction &leds_[(14 * number)  + x];
 // Wrong direction &leds_[(14 * number+1) - (x + 1)];
 
-CRGB leds_1[NUM_LEDS_1];
-CRGB leds_2[NUM_LEDS_2];
-Node nodes[NUM_NODES];
-Edge edges[NUM_EDGES];
-
 void LedStructure::initialize() {
+  FastLED.addLeds<LED_TYPE, DATA_PIN_1, COLOR_ORDER>(leds_1, NUM_LEDS_1);
+  FastLED.addLeds<LED_TYPE, DATA_PIN_2, COLOR_ORDER>(leds_2, NUM_LEDS_2);
+
   for (int x = 0; x < NUM_LEDS_PER_EDGE; x++) {
     edges[0].leds[x] = &leds_1[(14 * 17) - (x + 1)];
     edges[1].leds[x] = &leds_2[(14 * 0)  + x]; // yes "14 * 0 == 0" but I love me some consistentcy. But now only this line has a comment, way to go.

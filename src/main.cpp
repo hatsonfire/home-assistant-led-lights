@@ -45,10 +45,6 @@ void setup() {
   ledStructure.initialize();
   mqtt_handler_init();
 
-  // FastLED setup
-  FastLED.addLeds<LED_TYPE, DATA_PIN_1, COLOR_ORDER>(leds_1, NUM_LEDS_1);
-  FastLED.addLeds<LED_TYPE, DATA_PIN_2, COLOR_ORDER>(leds_2, NUM_LEDS_2);
-
   // Initialize the first effect
   set_effect(EFFECT_SOLID);
 }
