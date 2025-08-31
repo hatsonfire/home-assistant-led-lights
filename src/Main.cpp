@@ -3,6 +3,7 @@
 #include "effects/Effect.h"
 #include "effects/Pulsing.h"
 #include "effects/Solid.h"
+#include "effects/Test.h"
 #include "LEDStructure.h"
 #include "MQTTHandler.h"
 #include "Settings.h"
@@ -36,6 +37,8 @@ void set_effect(const String& effect_name) {
     currentEffect = new SolidEffect();
   } else if (effect_name == EFFECT_PULSING) {
     currentEffect = new PulsingEffect();
+  } else if (effect_name == EFFECT_TEST) {
+    currentEffect = new TestEffect();
   }
 
   current_effect_name = effect_name;

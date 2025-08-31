@@ -1,5 +1,5 @@
-#ifndef SOLID_H
-#define SOLID_H
+#ifndef EFFECT_SOLID_H
+#define EFFECT_SOLID_H
 
 #include "Effect.h"
 
@@ -13,4 +13,4 @@ private:
   const float SOLID_BRIGHTNESS_RATIO = 0.5;
 };
 
-#endif // SOLID_H
+#endif // EFFECT_SOLID_H

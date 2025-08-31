@@ -1,5 +1,5 @@
-#ifndef PULSING_H
-#define PULSING_H
+#ifndef EFFECT_PULSING_H
+#define EFFECT_PULSING_H
 
 #include "Effect.h"
 
@@ -8,15 +8,14 @@ public:
   PulsingEffect();
   void loop() override;
 
-private:
+private: 
   CRGB color;
   int pulsing_current_brightness = 0;
   bool pulsing_increasing = true;
-  // Milliseconds between udpates. 50 ms == 20 Hz
-  const long PULSING_ANIMATION_INTERVAL = 50;
-  const float PULSING_BRIGHTNESS_PER_CYCLE = 6;
-  const float PULSING_BRIGHTNESS_RATIO = 0.5;
   unsigned long last_update_time = 0;
+  const long ANIMATION_INTERVAL_MS = 50;
+  const float BRIGHTNESS_PER_CYCLE = 6;
+  const float BRIGHTNESS_RATIO = 0.5;
 };
 
-#endif // PULSING_H
+#endif // EFFECT_PULSING_H
