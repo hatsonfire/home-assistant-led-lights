@@ -3,12 +3,9 @@
 TestEffect::TestEffect() {
     current_edge = NUM_EDGES - 1;
     current_led = NUM_LEDS_PER_EDGE - 1;
-    // Initialize all LEDs to off
-    for (int edge = 0; edge < NUM_EDGES; edge++) {
-        for (int led = 0; led < NUM_LEDS_PER_EDGE; led++) {
-            *edges[edge].leds[led] = CRGB::Black;
-        }
-    }
+    // Clear all LEDs when the effect starts
+    FastLED.clear();
+    FastLED.show();
 }
 
 void TestEffect::loop() {

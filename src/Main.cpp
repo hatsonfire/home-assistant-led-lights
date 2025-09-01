@@ -2,8 +2,10 @@
 
 #include "effects/Effect.h"
 #include "effects/Pulsing.h"
+#include "effects/Snake.h"
 #include "effects/Solid.h"
 #include "effects/Test.h"
+#include "effects/Twinkle.h"
 #include "LEDStructure.h"
 #include "MQTTHandler.h"
 #include "Settings.h"
@@ -13,9 +15,12 @@
 LedStructure ledStructure;
 
 // Effect names
-const char* EFFECT_SOLID = "Solid";
 const char* EFFECT_PULSING = "Pulsing";
+const char* EFFECT_SNAKE = "Snake";
+const char* EFFECT_SOLID = "Solid";
 const char* EFFECT_TEST = "Test";
+const char* EFFECT_TWINKLE = "Twinkle";
+
 
 // Global Variables
 Effect* currentEffect = nullptr;
@@ -33,12 +38,14 @@ void set_effect(const String& effect_name) {
   }
 
   // Create a new effect based on the effect_name
-  if (effect_name == EFFECT_SOLID) {
-    currentEffect = new SolidEffect();
-  } else if (effect_name == EFFECT_PULSING) {
+  if (effect_name == EFFECT_PULSING ) {
     currentEffect = new PulsingEffect();
+  } else if (effect_name == EFFECT_SOLID) {
+    currentEffect = new SolidEffect();
   } else if (effect_name == EFFECT_TEST) {
     currentEffect = new TestEffect();
+  } else if (effect_name == EFFECT_TWINKLE) {
+    currentEffect = new TwinkleEffect();
   }
 
   current_effect_name = effect_name;
