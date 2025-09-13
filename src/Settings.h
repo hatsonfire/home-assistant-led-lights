@@ -21,7 +21,6 @@
 // MQTT Definitions
 #define MQTT_SERVER "192.168.86.31"
 #define MQTT_PORT 1883
-#define MQTT_USER "mqtt_broker_user"
 #define MQTT_CLIENT_ID "esp32_leds"
 #define LIGHT_AVAILABILITY_TOPIC "homeassistant/light/esp32_leds/availability"
 #define LIGHT_COMMAND_TOPIC "homeassistant/light/esp32_leds/set"
