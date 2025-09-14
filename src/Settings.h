@@ -12,8 +12,8 @@
 #define DATA_PIN_2 5 // GPIO pin connected to the LED strip's 2nd data line
 #define NUM_LEDS_1 238 // Number of LEDs Attached to DATA_PIN_1 in your strip
 #define NUM_LEDS_2 322 // Number of LEDs Attached to DATA_PIN_2 in your strip
-#define LED_TYPE WS2812B
-#define COLOR_ORDER GRB
+#define LED_TYPE WS2812B // Type of LEDs being used in your implmentation
+#define COLOR_ORDER GRB // Color encoding expected by your LED strip
 #define NUM_NODES 25
 #define NUM_EDGES 40
 #define NUM_LEDS_PER_EDGE 14
@@ -32,7 +32,8 @@ struct Node {
   Edge *n, *ne, *se, *s, *sw, *nw;  
 };
 struct Edge {
-  Node *low_node, *high_node;
+  Node *low_node; // Node closest to leds[0]
+  Node *high_node; // Node closest to leds[NUM_LEDS_PER_EDGE - 1]
   CRGB *leds[NUM_LEDS_PER_EDGE];
 };
 

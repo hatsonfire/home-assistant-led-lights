@@ -14,29 +14,30 @@ SnakeEffect::SnakeEffect() {
 }
 
 SnakeEffect::SnakeHead SnakeEffect::pickNewDirection(Node* current_node, Edge* current_edge) {
-  std::vector<SnakeHead> possible_heads;
+   SnakeHead possible_heads[6];
+   uint8_t num_possible_heads = 0;
 
   // Gather all valid, non-null edges connected to the current node
   if (current_node->nw && current_edge != current_node->nw) {
-    possible_heads.push_back(SnakeHead{.edge = current_node->nw, .led_index = 0, .direction = 1});
+    possible_heads[num_possible_heads++] = SnakeHead{.edge = current_node->nw, .led_index = 0, .direction = 1};
   }
   if (current_node->n && current_edge != current_node->n) {
-    possible_heads.push_back(SnakeHead{.edge = current_node->n, .led_index = 0, .direction = 1});
+    possible_heads[num_possible_heads++] = SnakeHead{.edge = current_node->n, .led_index = 0, .direction = 1};
   }
   if (current_node->ne && current_edge != current_node->ne) {
-    possible_heads.push_back(SnakeHead{.edge = current_node->ne, .led_index = 0, .direction = 1});
+    possible_heads[num_possible_heads++] = SnakeHead{.edge = current_node->ne, .led_index = 0, .direction = 1};
   }
   if (current_node->se && current_edge != current_node->se) {
-    possible_heads.push_back(SnakeHead{.edge = current_node->se, .led_index = NUM_LEDS_PER_EDGE - 1, .direction = -1});
+    possible_heads[num_possible_heads++] = SnakeHead{.edge = current_node->se, .led_index = NUM_LEDS_PER_EDGE - 1, .direction = -1};
   }
   if (current_node->s && current_edge != current_node->s) {
-    possible_heads.push_back(SnakeHead{.edge = current_node->s, .led_index = NUM_LEDS_PER_EDGE - 1, .direction = -1});
+    possible_heads[num_possible_heads++] = SnakeHead{.edge = current_node->s, .led_index = NUM_LEDS_PER_EDGE - 1, .direction = -1};
   }
   if (current_node->sw && current_edge != current_node->sw) {
-    possible_heads.push_back(SnakeHead{.edge = current_node->sw, .led_index = NUM_LEDS_PER_EDGE - 1, .direction = -1});
+    possible_heads[num_possible_heads++] = SnakeHead{.edge = current_node->sw, .led_index = NUM_LEDS_PER_EDGE - 1, .direction = -1};
   }
 
-  if (possible_heads.empty()) {
+  if (!num_possible_heads) {
     // Failsafe in case a node has no connections, just restart
     return SnakeHead{
       .edge = &edges[0],
@@ -45,8 +46,8 @@ SnakeEffect::SnakeHead SnakeEffect::pickNewDirection(Node* current_node, Edge* c
     };
   }
 
-  // Pick a random next_head location
-  return possible_heads[random8(possible_heads.size())];
+  // Pick a random next_head location.
+  return possible_heads[random8(num_possible_heads)];
 }
 
 void SnakeEffect::loop() {
