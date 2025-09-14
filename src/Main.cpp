@@ -6,6 +6,7 @@
 #include "effects/Solid.h"
 #include "effects/TestEdges.h"
 #include "effects/Twinkle.h"
+#include "effects/TwinkleRGB.h"
 #include "LEDStructure.h"
 #include "MQTTHandler.h"
 // Include other effect headers here
@@ -19,6 +20,7 @@ const char* EFFECT_SNAKE = "Snake";
 const char* EFFECT_SOLID = "Solid";
 const char* EFFECT_TEST_EDGES = "TestEdges";
 const char* EFFECT_TWINKLE = "Twinkle";
+const char* EFFECT_TWINKLE_RGB = "TwinkleRGB";
 
 
 // Global Variables
@@ -44,9 +46,11 @@ void set_effect(const String& effect_name) {
   } else if (effect_name == EFFECT_SOLID) {
     currentEffect = new SolidEffect();
   } else if (effect_name == EFFECT_TEST_EDGES) {
-    currentEffect = new TestEffectEdges();
+    currentEffect = new TestEdgesEffect();
   } else if (effect_name == EFFECT_TWINKLE) {
     currentEffect = new TwinkleEffect();
+  } else if (effect_name == EFFECT_TWINKLE_RGB) {
+    currentEffect = new TwinkleRGBEffect();
   }
 
   current_effect_name = effect_name;

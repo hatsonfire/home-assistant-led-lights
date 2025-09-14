@@ -3,9 +3,9 @@
 
 #include "Effect.h"
 
-class TestEffectEdges : public Effect {
+class TestEdgesEffect : public Effect {
 public:
-  TestEffectEdges();
+  TestEdgesEffect();
   void loop() override;
 
 private:

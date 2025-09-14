@@ -1,6 +1,6 @@
 #include "TestEdges.h"
 
-TestEffectEdges::TestEffectEdges() {
+TestEdgesEffect::TestEdgesEffect() {
     current_edge = NUM_EDGES - 1;
     current_led = NUM_LEDS_PER_EDGE - 1;
     // Clear all LEDs when the effect starts
@@ -8,7 +8,7 @@ TestEffectEdges::TestEffectEdges() {
     FastLED.show();
 }
 
-void TestEffectEdges::loop() {
+void TestEdgesEffect::loop() {
   // Check if enough time has passed since last update.
   unsigned long current_millis = millis();
   if (current_millis - last_update_time < ANIMATION_INTERVAL_MS) {
