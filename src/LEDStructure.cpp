@@ -65,56 +65,140 @@ Edge edges[NUM_EDGES];
 
 // Initialize the datastructure mapping LED physical addresses to Edges and Nodes.
 //
-//
-// Correct direction &leds_[(14 * number)  + x];
-// Wrong direction &leds_[(14 * number+1) - (x + 1)];
+// Physical and Logical in same direction &leds_[(NUM_LEDS_PER_EDGE * number)  + x];
+// Physical and Logical in opposite directions &leds_[(NUM_LEDS_PER_EDGE * number+1) - (x + 1)];
 
 void LedStructure::initialize() {
   FastLED.addLeds<LED_TYPE, DATA_PIN_1, COLOR_ORDER>(leds_1, NUM_LEDS_1);
   FastLED.addLeds<LED_TYPE, DATA_PIN_2, COLOR_ORDER>(leds_2, NUM_LEDS_2);
 
+  // Initialize Logical Edges with physical LED addresses.
   for (int x = 0; x < NUM_LEDS_PER_EDGE; x++) {
-    edges[0].leds[x] = &leds_1[(14 * 17) - (x + 1)];
-    edges[1].leds[x] = &leds_2[(14 * 0)  + x]; // yes "14 * 0 == 0" but I love me some consistentcy. But now only this line has a comment, way to go.
-    edges[2].leds[x] = &leds_1[(14 * 13) - (x + 1)];
-    edges[3].leds[x] = &leds_1[(14 * 16) - (x + 1)];
-    edges[4].leds[x] = &leds_2[(14 * 7) - (x + 1)];
-    edges[5].leds[x] = &leds_2[(14 * 1)  + x];
-    edges[6].leds[x] = &leds_1[(14 * 12) - (x + 1)];
-    edges[7].leds[x] = &leds_1[(14 * 13) + x];
-    edges[8].leds[x] = &leds_2[(14 * 6) - (x + 1)];
-    edges[9].leds[x] = &leds_2[(14 * 7) + x];
-    edges[10].leds[x] = &leds_2[(14 * 2) + x];
-    edges[11].leds[x] = &leds_1[(14 * 11) - (x + 1)];
-    edges[12].leds[x] = &leds_1[(14 * 14) + x];
-    edges[13].leds[x] = &leds_1[(14 * 8) - (x + 1)];
-    edges[14].leds[x] = &leds_2[(14 * 8) + x];
-    edges[15].leds[x] = &leds_2[(14 * 23) - (x + 1)];
-    edges[16].leds[x] = &leds_1[(14 * 10) - (x + 1)];
-    edges[17].leds[x] = &leds_1[(14 * 8) + x];
-    edges[18].leds[x] = &leds_2[(14 * 5) - (x + 1)];
-    edges[19].leds[x] = &leds_2[(14 * 3) + x];
-    edges[20].leds[x] = &leds_2[(14 * 9) + x];
-    edges[21].leds[x] = &leds_2[(14 * 22) - (x + 1)];
-    edges[22].leds[x] = &leds_1[(14 * 0) + x];
-    edges[23].leds[x] = &leds_1[(14 * 4) - (x + 1)];
-    edges[24].leds[x] = &leds_1[(14 * 7) - (x + 1)];
-    edges[25].leds[x] = &leds_2[(14 * 16) + x];
-    edges[26].leds[x] = &leds_2[(14 * 16) - (x + 1)];
-    edges[27].leds[x] = &leds_2[(14 * 10) + x];
-    edges[28].leds[x] = &leds_1[(14 * 1) + x];
-    edges[29].leds[x] = &leds_1[(14 * 2) + x];
-    edges[30].leds[x] = &leds_1[(14 * 5) - (x + 1)];
-    edges[31].leds[x] = &leds_1[(14 * 5) + x];
-    edges[32].leds[x] = &leds_2[(14 * 14) - (x + 1)];
-    edges[33].leds[x] = &leds_2[(14 * 14) + x];
-    edges[34].leds[x] = &leds_2[(14 * 21) - (x + 1)];
-    edges[35].leds[x] = &leds_2[(14 * 19) + x];
-    edges[36].leds[x] = &leds_2[(14 * 19) - (x + 1)];
-    edges[37].leds[x] = &leds_2[(14 * 17) + x];
-    edges[38].leds[x] = &leds_2[(14 * 13) - (x + 1)];
-    edges[39].leds[x] = &leds_2[(14 * 11) + x];
+    edges[0].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 17) - (x + 1)];
+    edges[1].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 0)  + x]; // yes "NUM_LEDS_PER_EDGE * 0 == 0" but I love me some consistentcy. But now only this line has a comment, way to go.
+    edges[2].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 13) - (x + 1)];
+    edges[3].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 16) - (x + 1)];
+    edges[4].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 7) - (x + 1)];
+    edges[5].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 1)  + x];
+    edges[6].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 12) - (x + 1)];
+    edges[7].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 13) + x];
+    edges[8].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 6) - (x + 1)];
+    edges[9].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 7) + x];
+    edges[10].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 2) + x];
+    edges[11].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 11) - (x + 1)];
+    edges[12].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 14) + x];
+    edges[13].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 8) - (x + 1)];
+    edges[14].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 8) + x];
+    edges[15].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 23) - (x + 1)];
+    edges[16].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 10) - (x + 1)];
+    edges[17].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 8) + x];
+    edges[18].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 5) - (x + 1)];
+    edges[19].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 3) + x];
+    edges[20].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 9) + x];
+    edges[21].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 22) - (x + 1)];
+    edges[22].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 0) + x];
+    edges[23].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 4) - (x + 1)];
+    edges[24].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 7) - (x + 1)];
+    edges[25].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 16) + x];
+    edges[26].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 16) - (x + 1)];
+    edges[27].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 10) + x];
+    edges[28].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 1) + x];
+    edges[29].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 2) + x];
+    edges[30].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 5) - (x + 1)];
+    edges[31].leds[x] = &leds_1[(NUM_LEDS_PER_EDGE * 5) + x];
+    edges[32].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 14) - (x + 1)];
+    edges[33].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 14) + x];
+    edges[34].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 21) - (x + 1)];
+    edges[35].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 19) + x];
+    edges[36].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 19) - (x + 1)];
+    edges[37].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 17) + x];
+    edges[38].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 13) - (x + 1)];
+    edges[39].leds[x] = &leds_2[(NUM_LEDS_PER_EDGE * 11) + x];
   }
+
+  // Initialize low_node and high_node for each edge
+  // low_node = node closest to leds[0]
+  // hight_node = node closet to leds[NUM_LEDS_PER_EDGE]
+  edges[0].low_node = &nodes[0];
+  edges[0].high_node = &nodes[1];
+  edges[1].low_node = &nodes[0];
+  edges[1].high_node = &nodes[2];
+  edges[2].low_node = &nodes[1];
+  edges[2].high_node = &nodes[3];
+  edges[3].low_node = &nodes[1];
+  edges[3].high_node = &nodes[4];
+  edges[4].low_node = &nodes[2];
+  edges[4].high_node = &nodes[4];
+  edges[5].low_node = &nodes[2];
+  edges[5].high_node = &nodes[5];
+  edges[6].low_node = &nodes[3];
+  edges[6].high_node = &nodes[8];
+  edges[7].low_node = &nodes[1];
+  edges[7].high_node = &nodes[6];
+  edges[8].low_node = &nodes[4];
+  edges[8].high_node = &nodes[9];
+  edges[9].low_node = &nodes[2];
+  edges[9].high_node = &nodes[7];
+  edges[10].low_node = &nodes[5];
+  edges[10].high_node = &nodes[10];
+  edges[11].low_node = &nodes[6];
+  edges[11].high_node = &nodes[8];
+  edges[12].low_node = &nodes[6];
+  edges[12].high_node = &nodes[9];
+  edges[13].low_node = &nodes[7];
+  edges[13].high_node = &nodes[9];
+  edges[14].low_node = &nodes[7];
+  edges[14].high_node = &nodes[10];
+  edges[15].low_node = &nodes[8];
+  edges[15].high_node = &nodes[11];
+  edges[16].low_node = &nodes[8];
+  edges[16].high_node = &nodes[12];
+  edges[17].low_node = &nodes[9];
+  edges[17].high_node = &nodes[12];
+  edges[18].low_node = &nodes[9];
+  edges[18].high_node = &nodes[13];
+  edges[19].low_node = &nodes[10];
+  edges[19].high_node = &nodes[13];
+  edges[20].low_node = &nodes[10];
+  edges[20].high_node = &nodes[14];
+  edges[21].low_node = &nodes[11];
+  edges[21].high_node = &nodes[18];
+  edges[22].low_node = &nodes[8];
+  edges[22].high_node = &nodes[15];
+  edges[23].low_node = &nodes[12];
+  edges[23].high_node = &nodes[19];
+  edges[24].low_node = &nodes[9];
+  edges[24].high_node = &nodes[16];
+  edges[25].low_node = &nodes[13];
+  edges[25].high_node = &nodes[20];
+  edges[26].low_node = &nodes[10];
+  edges[26].high_node = &nodes[17];
+  edges[27].low_node = &nodes[14];
+  edges[27].high_node = &nodes[21];
+  edges[28].low_node = &nodes[15];
+  edges[28].high_node = &nodes[18];
+  edges[29].low_node = &nodes[15];
+  edges[29].high_node = &nodes[19];
+  edges[30].low_node = &nodes[16];
+  edges[30].high_node = &nodes[19];
+  edges[31].low_node = &nodes[16];
+  edges[31].high_node = &nodes[20];
+  edges[32].low_node = &nodes[17];
+  edges[32].high_node = &nodes[20];
+  edges[33].low_node = &nodes[17];
+  edges[33].high_node = &nodes[21];
+  edges[34].low_node = &nodes[18];
+  edges[34].high_node = &nodes[22];
+  edges[35].low_node = &nodes[19];
+  edges[35].high_node = &nodes[22];
+  edges[36].low_node = &nodes[19];
+  edges[36].high_node = &nodes[23];
+  edges[37].low_node = &nodes[20];
+  edges[37].high_node = &nodes[23];
+  edges[38].low_node = &nodes[20];
+  edges[38].high_node = &nodes[24];
+  edges[39].low_node = &nodes[21];
+  edges[39].high_node = &nodes[24];
 
   // Initialize nodes
   nodes[0].ne = &edges[1];

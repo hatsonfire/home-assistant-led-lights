@@ -4,11 +4,10 @@
 #include "effects/Pulsing.h"
 #include "effects/Snake.h"
 #include "effects/Solid.h"
-#include "effects/Test.h"
+#include "effects/TestEdges.h"
 #include "effects/Twinkle.h"
 #include "LEDStructure.h"
 #include "MQTTHandler.h"
-#include "Settings.h"
 // Include other effect headers here
 
 // LED Definitions
@@ -18,7 +17,7 @@ LedStructure ledStructure;
 const char* EFFECT_PULSING = "Pulsing";
 const char* EFFECT_SNAKE = "Snake";
 const char* EFFECT_SOLID = "Solid";
-const char* EFFECT_TEST = "Test";
+const char* EFFECT_TEST_EDGES = "TestEdges";
 const char* EFFECT_TWINKLE = "Twinkle";
 
 
@@ -40,10 +39,12 @@ void set_effect(const String& effect_name) {
   // Create a new effect based on the effect_name
   if (effect_name == EFFECT_PULSING ) {
     currentEffect = new PulsingEffect();
+  } else if (effect_name == EFFECT_SNAKE) {
+    currentEffect = new SnakeEffect();
   } else if (effect_name == EFFECT_SOLID) {
     currentEffect = new SolidEffect();
-  } else if (effect_name == EFFECT_TEST) {
-    currentEffect = new TestEffect();
+  } else if (effect_name == EFFECT_TEST_EDGES) {
+    currentEffect = new TestEffectEdges();
   } else if (effect_name == EFFECT_TWINKLE) {
     currentEffect = new TwinkleEffect();
   }
